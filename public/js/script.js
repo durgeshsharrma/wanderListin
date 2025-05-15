@@ -17,3 +17,24 @@
       }, false)
     })
   })()
+
+
+
+
+
+  
+
+
+  gsap.from('.navbar-nav' , {
+    duration : 1,
+    y : -30,
+    opacity : 0,
+    stagger : true
+  }) 
+
+
+  
+
+
+
+  

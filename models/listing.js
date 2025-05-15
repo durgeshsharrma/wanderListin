@@ -25,7 +25,12 @@ const listingSchema = new Schema({
        owner: {
               type: Schema.Types.ObjectId,
               ref: "User",
-       }
+       },
+
+       petsAllowed: {
+              type: Boolean,
+              default: false // Pets are not allowed by default, can be changed when listing is created
+          },
               
        
 
@@ -35,6 +40,7 @@ const listingSchema = new Schema({
 
 listingSchema.post("findOneAndDelete" , async (listing) => {
        if(listing) {
+              console.log(listing);
               await Review.deleteMany({ _id: { $in: listing.reviews}});
        }
 });

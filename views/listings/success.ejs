@@ -1,0 +1,63 @@
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Payment Successful</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Your payment has been successfully processed! Thank you for your booking.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">Payment Canceled</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Your payment was canceled. Please try again or contact support if you need assistance.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add the Stripe Script -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('<%= process.env.STRIPE_PUBLISHABLE_KEY %>'); // Your publishable key
+
+  // Get URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const success = urlParams.get('success');
+  const cancel = urlParams.get('cancel');
+
+  // Show the success modal if the payment was successful
+  if (success === 'true') {
+    var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+    successModal.show();
+  }
+
+  // Show the cancel modal if the payment was canceled
+  if (cancel === 'true') {
+    var cancelModal = new bootstrap.Modal(document.getElementById('cancelModal'));
+    cancelModal.show();
+  }
+
+  // Redirect back to home page after a few seconds
+  setTimeout(() => {
+    window.location.href = '/'; // Redirect to home page
+  }, 5000); // 5 seconds delay before redirecting
+</script>

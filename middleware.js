@@ -2,7 +2,7 @@ const Listing = require("./models/listing.js");
 const { reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
 
-module.exports.isLoggedIn = (req , res, next) => {
+module.exports.isLoggedIn = (req , res , next) => {
     if(!req.isAuthenticated()){
         req.session.redirectUrl = req.originalUrl;
         req.flash("error" , "Login Required to add Listing");

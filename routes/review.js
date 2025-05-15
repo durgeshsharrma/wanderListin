@@ -20,6 +20,7 @@ const validateReview = (req, res, next) => {
 }
 
 
+// To create new review
 router.post("/" ,isLoggedIn , validateReview ,WrapAsync(async(req , res) => {
     let listing = await Listing.findById(req.params.id);
     let NewReview = new Review(req.body.review);
@@ -35,6 +36,8 @@ router.post("/" ,isLoggedIn , validateReview ,WrapAsync(async(req , res) => {
  
  
  }))
+
+ 
  
  
  // review delete Route

@@ -1,40 +1,117 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav">
-          
-            <a class="nav-link" href="/">Home</a>
-          
-          
-            <a class="nav-link" href="/listing">All Listing</a>
-          
-          
-            <a class="nav-link" href="/listing/new">Add Listing</a>
-         
-          
-        </div>
-        <div class="navbar-nav ms-auto">
-          <% if(!currUser) { %>
-            <a class="nav-link" href="/signup">Sign up</a>
-            <a class="nav-link" href="/login">Log in</a>
-          <% } %>
-          <% if(currUser) { %>
-            <a class="nav-link" href="/logout">Logout</a>
-            <% } %>
-          
-        
-        
-          
-        
-        
-         
-       
-        
-      </div>
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Brand and Explore Links (Left) -->
+    <a data-aos="fade-right" class="navbar-brand text-light" href="#"><i class="fa-solid fa-car"></i></a>
+
+    <div  class="navbar-nav d-flex flex-row ms-3">
+      <a data-aos-duration="800" data-aos="fade-right" class="nav-link text-light" href="/listing">Explore</a>
+    </div>
+
+    <!-- Search Bar (Center) -->
+    <form data-aos-duration="1500" class="d-flex mx-auto" role="search" action="/listing" method="get">
+      <input data-aos="fade-right" class="form-control me-2" type="search" name="query" placeholder="Search destinations" aria-label="Search" required>
+      <button data-aos="fade-left" class="btn btn-outline-light" type="submit">Search</button>
+    </form>
+
+    <!-- User Links (Right) -->
+    <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listing/new">Add Listing</a>
+
+        <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+
+        <% if (currUser) { %>
+        <!-- Add the Booking Button for Logged-in Users -->
+        <a class="nav-link" href="/booking"><b>My Bookings</b></a>
+        <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <% } %>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+<!-- Navbar End -->
+
+<!-- Add Custom Styling -->
+<style>
+  /* Custom Navbar Styling */
+  .navbar {
+    padding: 1rem 2rem;
+    border-radius: 0 0 10px 10px;
+    /* Rounded bottom edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Navbar Brand Styling */
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffcc00 !important;
+    /* Yellow Color */
+  }
+
+  /* Navbar Link Styling */
+  .navbar-nav .nav-link {
+    color: #f8f9fa !important;
+    /* Light text for readability */
+    font-weight: 500;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+
+  /* Active Navbar Link */
+  .navbar-nav .nav-link.active {
+    font-weight: 700;
+    color: #ffcc00 !important;
+    /* Highlight active link */
+  }
+
+  /* Search Bar */
+  .form-control {
+    border-radius: 25px;
+    width: 30rem;
+    /* Adjust width */
+  }
+
+  .btn-outline-light {
+    border-radius: 25px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Navbar Toggler Icon Color */
+  .navbar-toggler-icon {
+    background-color: #ffcc00;
+    /* Yellow for hamburger icon */
+  }
+
+  /* Navbar Links for Mobile */
+  .navbar-nav {
+    text-align: center;
+  }
+
+  /* Small Screen Styling */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 1rem;
+    }
+
+    .navbar-nav .nav-link {
+      padding: 10px 15px;
+    }
+
+    .form-control {
+      margin-top: 10px;
+      width: 100%;
+      /* Full width for search input on small screens */
+    }
+  }
+</style>

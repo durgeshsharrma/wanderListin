@@ -1,14 +1,10 @@
-<% layout("/layouts/boilerplate") %>
-<div class="row mt-3">
+<!-- <% layout("/layouts/boilerplate") %> -->
+<!-- <div class="row mt-3">
     <div class="col-8 offset-2">
-        <h1>Signup On Wanderlust</h1>
+        <h1 class="mb-5 fw-bold" style="color: blue;">Login On WanderList</h1>
         <form action="/login" method="POST" class="needs-validation" novalidate>
             
-            <!-- <div class="mb-6">
-                <label for="email" class="form-label">Email: </label>
-                <input name="email" type="email" class="form-control" required>
-                <div class="valid-feedback">Email looks good!</div>
-            </div> -->
+            
 
                 <div class="mb-3">
                     <label for="username" class="form-label">Username: </label>
@@ -27,4 +23,119 @@
         </form>
 
     </div>
+</div> -->
+
+
+
+
+ <% layout("/layouts/boilerplate") %>
+
+<div class="row mt-5 mb-5">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+        <h1 data-aos="fade-right" data-aos-duration="1500" class="text-center mb-5 fw-bold text-primary">Login to WanderList</h1>
+        
+        <div data-aos="fade-left" data-aos-duration="1500" class="card shadow-sm p-4 rounded">
+            <form action="/login" method="POST" class="needs-validation" novalidate>
+                <div class="mb-4">
+                    <label for="username" class="form-label">Username: </label>
+                    <input name="username" type="text" class="form-control" required placeholder="Enter your username">
+                    <div class="invalid-feedback">Please provide a valid username.</div>
+                    <div class="valid-feedback">Username looks good!</div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password: </label>
+                    <input name="password" type="password" class="form-control" required placeholder="Enter your password">
+                    <div class="invalid-feedback">Please provide a valid password.</div>
+                    <div class="valid-feedback">Password looks good!</div>
+                </div>
+
+                <button class="btn btn-success w-100 mt-3 mb-3">Login</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p>Don't have an account? <a href="/signup" class="text-success">Sign up here</a></p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Custom Styles -->
+<style>
+  .card {
+    background: linear-gradient(135deg, #f8f9fa, #e9f5ff, #dff9fb);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease infinite;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+  }
+  
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 123, 255, 0.3);
+  }
+
+  
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .btn-success {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  .form-control {
+    border-radius: 25px;
+    padding: 10px 15px;
+    background-color: #ffffffcc;
+    border: 1px solid #ced4da;
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .text-primary {
+    color: #007bff !important;
+  }
+
+  .text-success {
+    color: #28a745 !important;
+  }
+
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .card {
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+

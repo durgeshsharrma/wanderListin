@@ -6,7 +6,7 @@
     <h1>Now You can Edit The Listing</h1>
     <br>
     
-    <form method="POST" action="/listing/<%= Info._id %>?_method=PUT" novalidate class="needs-validation">
+    <form method="POST" action="/listing/<%= Info._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title: </label>
             <input name="title" type="text" value="<%= Info.title %>" class="form-control" required>
@@ -19,8 +19,8 @@
             <div class="invalid-feedback">description Should be short</div>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image: </label>
-            <input name="image"  type="text" value="<%= Info.image %>" class="form-control" required>
+            <label for="image" class="form-label" >Upload New image: </label>
+            <input name="image"  type="file" value="<%= Info.image %>" class="form-control" >
         </div>
         
         <div class="row">
