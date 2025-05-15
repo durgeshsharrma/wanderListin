@@ -18,6 +18,7 @@ const Listing = require('./models/listing.js')
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
+const MongoStore = require('connect-mongo');
 
 
 
@@ -43,6 +44,7 @@ const sessionOptions = {
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     },
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 } 
 
 
@@ -193,7 +195,10 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+  });
 }
 
 
