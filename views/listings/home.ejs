@@ -55,22 +55,17 @@
         </p>
 
         <!-- Book Now Button -->
-        <form id="checkout-form" method="POST">
+        <form id="checkout-form-<%= listing._id %>" method="POST">
           <button type="submit" class="book-now-button mt-4">Book Now</button>
         </form>
 
         <script src="https://js.stripe.com/v3/"></script>
         <script>
-          const stripe = Stripe('<%= process.env.STRIPE_PUBLISHABLE_KEY %>'); // Your publishable key here
+          const form<%= listing._id %> = document.getElementById('checkout-form-<%= listing._id %>');
+          form<%= listing._id %>.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-          // Handle the form submission and initiate the payment
-          const form = document.getElementById('checkout-form');
-          form.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent the form from submitting normally
-
-            const listingId = '<%= listing._id %>'; // Pass the listing ID here
-
-            // Send a POST request to create the checkout session
+            const listingId = '<%= listing._id %>';
             const response = await fetch(`/create-checkout-session/${listingId}`, {
               method: 'POST',
             });
@@ -78,13 +73,11 @@
             const session = await response.json();
 
             if (session.id) {
-              // Redirect the user to the Stripe checkout page
               const {
                 error
               } = await stripe.redirectToCheckout({
                 sessionId: session.id
               });
-
               if (error) {
                 console.error("Stripe Checkout Error:", error);
               }
@@ -93,6 +86,7 @@
             }
           });
         </script>
+        
 
       </div>
     </div>
