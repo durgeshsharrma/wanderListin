@@ -224,7 +224,7 @@ app.engine("ejs" , ejsMate);
 
 
 
-app.use("/listing" , listing);
+app.use( listing);
 app.use("/listing/:id/reviews" , reviews);
 app.use("/", user);
 app.use(booking)

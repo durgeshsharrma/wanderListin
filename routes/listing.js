@@ -56,19 +56,19 @@ router.post("/", isLoggedIn, upload.single('listing[image]'), WrapAsync(async (r
     
      
     req.flash("success", "New Listing Created");
-    res.redirect("/listing");
+    res.redirect("/");
 }));
 
 
 // New listing form
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/listing/new", isLoggedIn, (req, res) => {
     res.render("listings/createNew.ejs");
 });
 
 
 
 // Show route for a specific listing
-router.get("/:id", WrapAsync(async (req, res, next) => {
+router.get("/listing/:id", WrapAsync(async (req, res, next) => {
     let { id } = req.params;
     let Info = await Listing.findById(id)
         .populate({ path: "reviews", populate: { path: "author" } })
@@ -82,14 +82,14 @@ router.get("/:id", WrapAsync(async (req, res, next) => {
 }));
 
 // Edit route
-router.get("/:id/edit", isLoggedIn, isOwner, WrapAsync(async (req, res) => {
+router.get("/listing/:id/edit", isLoggedIn, isOwner, WrapAsync(async (req, res) => {
     let { id } = req.params;
     let Info = await Listing.findById(id);
     res.render("listings/edit.ejs", { Info });
 }));
 
 // Update route
-router.put("/:id", isLoggedIn, isOwner, upload.single('image'), WrapAsync(async (req, res, next) => {
+router.put("listing/:id", isLoggedIn, isOwner, upload.single('image'), WrapAsync(async (req, res, next) => {
     let { id } = req.params;
     let t = await Listing.findByIdAndUpdate(id, req.body);
 
@@ -102,13 +102,13 @@ router.put("/:id", isLoggedIn, isOwner, upload.single('image'), WrapAsync(async 
 }));
 
 // Delete route
-router.delete("/:id", isLoggedIn, isOwner, WrapAsync(async (req, res) => {
+router.delete("/listing/:id", isLoggedIn, isOwner, WrapAsync(async (req, res) => {
     console.log(req.params)
     let { id } = req.params;
     console.log(id)
     let deletedListing = await Listing.findByIdAndDelete(id);
     req.flash("success", "Listing was Deleted");
-    res.redirect("/listing");
+    res.redirect("/");
 }));
 
 
