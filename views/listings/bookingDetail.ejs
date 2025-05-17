@@ -1,23 +1,53 @@
 <% layout('layouts/boilerplate') %>
 
-
 <div class="row">
-  
-      
-      <div class="col-8 mt-3 mb-4 offset-2">
-        <h2>Booking Details</h2>
-       
-          <div class="card">
-            <img src="<%= booking.listing.image %>" class="card-img-top show-img" style="height: 20rem;" alt="<%= booking.listing.title %>">
-            <div class="card-body p-4">
-              <h5 class="card-title"><%= booking.listing.title %></h5>
-              <p class="card-text">Payment Status: <%= booking.paymentStatus %></p>
-              <p class="card-text">Booked on: <%= booking.createdAt.toLocaleDateString() %></p>
-              <p class="card-text">Total Amount: <%= booking.listing.price %> USD</p>
-            </div>
-          </div>
-       
+  <div class="col-12 col-md-8 offset-md-2 mt-3 mb-4">
+    <h2 class="mb-4 text-center text-md-start">Booking Details</h2>
 
+    <div class="card shadow-sm fixed-card">
+      <img src="<%= booking.listing.image %>" class="card-img-top img-fluid fixed-card-img" alt="<%= booking.listing.title %>">
+
+      <div class="card-body p-4 fixed-card-body">
+        <h5 class="card-title"><%= booking.listing.title %></h5>
+        <p class="card-text"><strong>Payment Status:</strong> <%= booking.paymentStatus %></p>
+        <p class="card-text"><strong>Booked on:</strong> <%= booking.createdAt.toLocaleDateString() %></p>
+        <p class="card-text"><strong>Total Amount:</strong> <%= booking.listing.price %> USD</p>
       </div>
     </div>
+  </div>
 </div>
+
+<style>
+  /* Fixed card height */
+  .fixed-card {
+    height: 400px;
+    /* fixed height for all cards */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Image takes about 50% height and covers area */
+  .fixed-card-img {
+    height: 50%;
+    /* half card height */
+    object-fit: cover;
+    width: 100%;
+  }
+
+  /* Card body takes remaining space and scrolls if content overflows */
+  .fixed-card-body {
+    height: 50%;
+    /* other half */
+    overflow-y: auto;
+  }
+
+  /* Optional: hide scrollbar but allow scrolling */
+  .fixed-card-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .fixed-card-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+</style>

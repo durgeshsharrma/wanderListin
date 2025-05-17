@@ -1,22 +1,30 @@
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <!-- Brand and Explore Links (Left) -->
     <a data-aos="fade-right" class="navbar-brand text-light" href="#"><i class="fa-solid fa-car"></i></a>
 
-    <div  class="navbar-nav d-flex flex-row ms-3">
-      <a data-aos-duration="800" data-aos="fade-right" class="nav-link text-light" href="/">Explore</a>
-    </div>
+    <!-- Toggler for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <!-- Search Bar (Center) -->
-    <form data-aos-duration="1500" class="d-flex mx-auto" role="search" action="/" method="get">
-      <input data-aos="fade-right" class="form-control me-2" type="search" name="query" placeholder="Search destinations" aria-label="Search" required>
-      <button data-aos="fade-left" class="btn btn-outline-light" type="submit">Search</button>
-    </form>
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
 
-    <!-- User Links (Right) -->
-    <div class="navbar-nav ms-auto">
-      <div class="navbar-nav ms-auto">
+      <!-- Explore Link -->
+      <div class="navbar-nav d-flex justify-content-center ms-lg-3">
+        <a data-aos-duration="800" data-aos="fade-right" class="nav-link text-center" href="/">Explore</a>
+      </div>
+
+      <!-- Search Bar (Center) -->
+      <form data-aos-duration="1500" class="d-flex mx-lg-auto my-2 my-lg-0" role="search" action="/listing" method="get">
+        <input data-aos="fade-right" class="form-control me-2" type="search" name="query" placeholder="Search destinations" aria-label="Search" required>
+        <button data-aos="fade-left" class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+
+      <!-- User Links (Right) -->
+      <div class="navbar-nav ms-lg-auto d-flex flex-wrap align-items-center justify-content-end gap-2">
         <a class="nav-link" href="/listing/new">Add Listing</a>
 
         <% if (!currUser) { %>
@@ -25,11 +33,11 @@
         <% } %>
 
         <% if (currUser) { %>
-        <!-- Add the Booking Button for Logged-in Users -->
         <a class="nav-link" href="/booking"><b>My Bookings</b></a>
         <a class="nav-link" href="/logout"><b>Logout</b></a>
         <% } %>
       </div>
+
     </div>
   </div>
 </nav>
@@ -37,26 +45,20 @@
 
 <!-- Add Custom Styling -->
 <style>
-  /* Custom Navbar Styling */
   .navbar {
     padding: 1rem 2rem;
     border-radius: 0 0 10px 10px;
-    /* Rounded bottom edges */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  /* Navbar Brand Styling */
   .navbar-brand {
     font-size: 1.8rem;
     font-weight: 700;
     color: #ffcc00 !important;
-    /* Yellow Color */
   }
 
-  /* Navbar Link Styling */
   .navbar-nav .nav-link {
     color: #f8f9fa !important;
-    /* Light text for readability */
     font-weight: 500;
     padding-left: 15px;
     padding-right: 15px;
@@ -67,18 +69,14 @@
     border-radius: 5px;
   }
 
-  /* Active Navbar Link */
   .navbar-nav .nav-link.active {
     font-weight: 700;
     color: #ffcc00 !important;
-    /* Highlight active link */
   }
 
-  /* Search Bar */
   .form-control {
     border-radius: 25px;
     width: 30rem;
-    /* Adjust width */
   }
 
   .btn-outline-light {
@@ -87,18 +85,10 @@
     padding-right: 1.5rem;
   }
 
-  /* Navbar Toggler Icon Color */
   .navbar-toggler-icon {
-    background-color: #ffcc00;
-    /* Yellow for hamburger icon */
+    background-color: transparent
   }
 
-  /* Navbar Links for Mobile */
-  .navbar-nav {
-    text-align: center;
-  }
-
-  /* Small Screen Styling */
   @media (max-width: 768px) {
     .navbar {
       padding: 1rem;
@@ -111,7 +101,6 @@
     .form-control {
       margin-top: 10px;
       width: 100%;
-      /* Full width for search input on small screens */
     }
   }
 </style>
