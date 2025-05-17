@@ -155,7 +155,7 @@ app.get("/success", async (req, res) => {
 
             // Redirect to the home page with a success message
             req.flash("success", "Payment successful and booking created!");
-            res.redirect('/listing');
+            res.redirect('/');
         } else {
             // Payment was not successful
             req.flash("error", "Payment was not successful.");

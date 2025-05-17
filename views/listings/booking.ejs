@@ -5,29 +5,33 @@
 
 <!-- Booking List -->
 <div class="container">
-  <% if (bookings && bookings.length > 0) { %>
-  <div class="row">
-    <% bookings.forEach(booking => { %>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-      <div class="card shadow-sm">
-        <img src="<%= booking.listing.image %>" class="card-img-top" alt="<%= booking.listing.title %>">
-        <div class="card-body p-3">
-          <h5 class="card-title font-"><%= booking.listing.title %></h5>
-          <p class="card-text">Payment Status: <%= booking.paymentStatus %></p>
-          <p class="card-text">Booked on: <%= booking.createdAt.toLocaleDateString() %></p>
-
-          <!-- Button to View Details or Modify Booking -->
-          <a href="/booking/<%= booking._id %>" class="btn btn-primary">View Details</a>
-        </div>
+  <% bookings.forEach(booking => { %>
+  <% if (booking.listing) { %>
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+    <div class="card shadow-sm">
+      <img src="<%= booking.listing.image %>" class="card-img-top" alt="<%= booking.listing.title %>">
+      <div class="card-body p-3">
+        <h5 class="card-title font-"><%= booking.listing.title %></h5>
+        <p class="card-text">Payment Status: <%= booking.paymentStatus %></p>
+        <p class="card-text">Booked on: <%= booking.createdAt.toLocaleDateString() %></p>
+        <a href="/booking/<%= booking._id %>" class="btn btn-primary">View Details</a>
       </div>
     </div>
-    <% }) %>
   </div>
   <% } else { %>
-  <div class="alert alert-info text-center" role="alert">
-    You have no bookings yet. Start exploring listings and make a booking!
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+    <div class="card shadow-sm bg-light">
+      <div class="card-body p-3">
+        <h5 class="card-title text-danger">Listing Removed</h5>
+        <p class="card-text">Payment Status: <%= booking.paymentStatus %></p>
+        <p class="card-text">Booked on: <%= booking.createdAt.toLocaleDateString() %></p>
+        <p class="text-muted">This listing is no longer available.</p>
+      </div>
+    </div>
   </div>
   <% } %>
+  <% }) %>
+  
 </div>
 
 <!-- Add some custom styling -->
