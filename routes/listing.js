@@ -89,7 +89,7 @@ router.get("/listing/:id/edit", isLoggedIn, isOwner, WrapAsync(async (req, res) 
 }));
 
 // Update route
-router.put("listing/:id", isLoggedIn, isOwner, upload.single('image'), WrapAsync(async (req, res, next) => {
+router.put("/listing/:id", isLoggedIn, isOwner, upload.single('image'), WrapAsync(async (req, res, next) => {
     let { id } = req.params;
     let t = await Listing.findByIdAndUpdate(id, req.body);
 
